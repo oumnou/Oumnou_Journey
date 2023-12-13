@@ -25,7 +25,7 @@ import org.json.JSONObject
 
 class FragmentThree : Fragment() {
 
-    private lateinit var responseTV: TextView
+
     private lateinit var sendBtn: Button
     private lateinit var adapter: ChatBootAdapter
     private lateinit var queryEdt: EditText
@@ -50,6 +50,8 @@ class FragmentThree : Fragment() {
 
         sendBtn.setOnClickListener {
             val message = queryEdt.text.toString()
+            queryEdt.setText("")
+
             if (message.isNotBlank()) {
 
                 getResponse(message)
@@ -80,13 +82,11 @@ class FragmentThree : Fragment() {
             object : JsonObjectRequest(Method.POST, url, jsonObject,
                 Response.Listener { response ->
 
-
-
                     val responseMsg: String =
                         response.getJSONArray("choices").getJSONObject(0).getString("text")
 
                     // Updating the last item in the list with the actual response
-                    list[list.size - 1] = Message(query, responseMsg)
+                    list[list.size - 1] = Message(query.trim(), responseMsg.trim())
                     adapter.notifyDataSetChanged()
                 },
 
@@ -104,7 +104,7 @@ class FragmentThree : Fragment() {
                 override fun getHeaders(): MutableMap<String, String> {
                     val params: MutableMap<String, String> = HashMap()
                     params["Content-Type"] = "application/json"
-                    params["Authorization"] = "Bearer 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"
+                    params["Authorization"] = "Bearer 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"
                     return params
                 }
             }

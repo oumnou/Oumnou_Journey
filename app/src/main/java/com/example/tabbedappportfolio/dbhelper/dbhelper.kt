@@ -84,4 +84,13 @@ class MyDBHelper(context: Context, private val categoryType: String) :
         return items
     }
 
+    fun deleteItem(item: MyItem): Boolean {
+        val db = this.writableDatabase
+        val whereClause = "$COLUMN_TEXT1 = ? AND $COLUMN_TEXT2 = ?"
+        val whereArgs = arrayOf(item.title, item.text)
+        val deletedRows = db.delete(tableName, whereClause, whereArgs)
+        db.close()
+        return deletedRows > 0
+    }
+
 }

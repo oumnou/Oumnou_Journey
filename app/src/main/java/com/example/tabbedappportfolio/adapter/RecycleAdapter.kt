@@ -8,7 +8,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,10 +17,11 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tabbedappportfolio.R
+import com.example.tabbedappportfolio.dbhelper.MyDBHelper
 import com.example.tabbedappportfolio.model.MyItem
 
 
-class RecycleAdapter(private var itemList: List<MyItem>) : RecyclerView.Adapter<RecycleAdapter.MyViewHolder>(),
+class RecycleAdapter(var itemList: List<MyItem>) : RecyclerView.Adapter<RecycleAdapter.MyViewHolder>(),
     ItemTouchHelperAdapter {
 
 
@@ -87,12 +87,8 @@ class RecycleAdapter(private var itemList: List<MyItem>) : RecyclerView.Adapter<
     }
 
     override fun onItemDismiss(position: Int) {
-        val deletedItem = itemList[position]
-        // Notify the adapter about the item removal
+        itemList = itemList.toMutableList().apply { removeAt(position) }
         notifyItemRemoved(position)
-
-        // Handle database deletion logic or invoke the delete callback
-        //deleteCallback?.invoke(deletedItem)
     }
 
 
@@ -103,10 +99,10 @@ interface ItemTouchHelperAdapter {
 }
 
 
-class ItemTouchHelperCallback(private val adapter: RecycleAdapter,context :Context) :
+class ItemTouchHelperCallback(private val adapter: RecycleAdapter,val context :Context,val categoryType: String) :
     ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
 
-    private val background: ColorDrawable = ColorDrawable(Color.RED)
+    private val background: ColorDrawable = ColorDrawable(Color.argb(67,67,4,107))
     private val deleteIcon: Drawable? =
         ContextCompat.getDrawable(context, R.drawable.ic_delete)
 
@@ -120,8 +116,14 @@ class ItemTouchHelperCallback(private val adapter: RecycleAdapter,context :Conte
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
         val position = viewHolder.adapterPosition
-        //adapter.deleteCallback.invoke(adapter.itemList[position])
+        val deletedItem = adapter.itemList[position]
+
+        val dbHelper = MyDBHelper(context, categoryType)
+        dbHelper.deleteItem(deletedItem)
+
+        adapter.onItemDismiss(position)
     }
+
 
     override fun onChildDraw(
         c: Canvas,
@@ -139,9 +141,9 @@ class ItemTouchHelperCallback(private val adapter: RecycleAdapter,context :Conte
 
         // Draw red background
         background.setBounds(
-            itemView.right + dX.toInt() - backgroundCornerOffset,
+            itemView.left + dX.toInt() - backgroundCornerOffset,
             itemView.top,
-            itemView.right,
+            itemView.left,
             itemView.bottom
         )
         background.draw(c)

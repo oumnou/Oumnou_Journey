@@ -17,6 +17,7 @@ import com.example.tabbedappportfolio.adapter.SampleAdapter
 import com.example.tabbedappportfolio.fragments.FragmentFour
 import com.example.tabbedappportfolio.fragments.FragmentOne
 import com.example.tabbedappportfolio.fragments.FragmentThree
+import com.example.tabbedappportfolio.fragments.FragmentTwo
 import com.google.android.material.tabs.TabLayout
 
 open class MainActivity : AppCompatActivity() {
@@ -150,8 +151,14 @@ open class MainActivity : AppCompatActivity() {
             val selectedTabIndex = bundle?.getInt("selectedTabIndex", 0) ?: 0
 
             // Update the data in the corresponding fragment
-            val fragment = supportFragmentManager.fragments[selectedTabIndex] as FragmentOne
-            fragment.updateData()
+            val fragment = supportFragmentManager.fragments[selectedTabIndex]
+            if(fragment is FragmentOne){
+                fragment.updateData()
+            }else if (fragment is FragmentTwo){
+                fragment.updateData()
+            }
+
+
         }
     }override fun onRequestPermissionsResult(
         requestCode: Int,

@@ -36,7 +36,7 @@ class SampleAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getPageTitle(position: Int): CharSequence = when (position) {
         0 -> "My Life"
         1 -> "My study"
-        2 -> "Chat boot"
+        2 -> "Chat-boot"
         3 -> "To Do"
         else -> ""
     }

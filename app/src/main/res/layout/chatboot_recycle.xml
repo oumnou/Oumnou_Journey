@@ -13,9 +13,8 @@
 
     <TextView
         android:id="@+id/idTVResponse"
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_marginEnd="4dp"
-
         android:layout_height="wrap_content"
         android:background="@drawable/send_round_box"
         android:backgroundTint="#673AB7"

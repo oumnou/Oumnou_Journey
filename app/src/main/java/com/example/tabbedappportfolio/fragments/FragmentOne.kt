@@ -40,10 +40,9 @@ class FragmentOne : Fragment(){
         recyclerView.adapter = adapter
 
 
-        // Set up ItemTouchHelper
-       /* val itemTouchHelperCallback = ItemTouchHelperCallback(adapter)
+        val itemTouchHelperCallback = ItemTouchHelperCallback(adapter, requireContext(),"about me")
         val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
-        itemTouchHelper.attachToRecyclerView(recyclerView)*/
+        itemTouchHelper.attachToRecyclerView(recyclerView)
 
         return rootView
     }
