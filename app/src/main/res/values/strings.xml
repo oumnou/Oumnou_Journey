@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Oumnou</string>
+
+    <string name="me">I am beautifully unique, and that is my superpower. My radiant smile,
+        the sparkle in my eyes, and the kindness in my heart make me truly special.
+
+       </string>
+    <string name="progr">As a dedicated app developer, I thrive on turning ideas into reality through code.
+        With a passion for problem-solving and a keen eye for user experience,
+        I specialize in crafting engaging and efficient mobile applications.
+      </string>
+    <string name="communication">A natural communicator, I bring clarity and enthusiasm to every interaction.
+        From collaborating on projects to engaging in discussions, I find joy in making complex concepts accessible.
+     </string>
+    <string name="insta">Explore my Instagram for a glimpse into life\'s beautiful moments.
+        From everyday joys to captivating sunsets, I love sharing the extraordinary in the ordinary.
+      🌟📸 #CaptureTheMoment</string>
+    <string name="rsa">Crypte is a simple message encryption application built using the RSA encryption algorithm. It provides a graphical user interface (GUI) using the Tkinter library in Python.</string>
+    <string name="renault">Renault Pose Detector is an innovative mobile application designed to enhance the safety and efficiency of workers in the automotive industry. Our application utilizes technology powered by Kotlin and TensorFlow to accurately detect the postures of workers performing tasks on cars</string>
+    <string name="android">Android Studio, my beloved creative sanctuary, is where my app ideas come to life. Its intuitive interface and powerful tools make coding a joy. With every line of code, I deepen my connection to the vibrant world of Android development, fostering a love that grows with each new project.</string>
+    <string name="kotlin">Kotlin, the language of elegance and efficiency, has captured my heart. Its concise syntax and expressive features empower me to write clean, readable code. As I dance through the realms of extension functions and null safety, I\'m on a journey to master Kotlin—an adventure fueled by my passion for crafting robust and modern Android applications.</string>
+    <string name="java">Java, the timeless foundation of my programming journey, is where my love affair with coding began. It\'s a language that has been my trusted companion through thick and thin. With every class and method, I strengthen my skills, driven by a desire to achieve perfection in the art of Java programming. Java, you are the bedrock of my programming dreams, and I am devoted to mastering your every nuance.</string>
+
+
+    <string name="welcome_message">
+    Welcome to your journey at the Superior School of Technology Meknes !
+</string>
+
+   <string name="Explore">
+ Explore "Your Life," "Your Projects," "Skills," and "Todo List" to make the most of your student experience.
+        Best wishes on your academic journey!
+</string>
+
+
+</resources>
