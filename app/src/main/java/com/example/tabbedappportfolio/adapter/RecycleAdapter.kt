@@ -1,5 +1,4 @@
 package com.example.tabbedappportfolio.adapter
-
 import android.content.ContentUris
 import android.content.Context
 import android.graphics.BitmapFactory
@@ -99,7 +98,7 @@ interface ItemTouchHelperAdapter {
 }
 
 
-class ItemTouchHelperCallback(private val adapter: RecycleAdapter,val context :Context,val categoryType: String) :
+class ItemTouchHelperCallback(private val adapter: RecycleAdapter, val context :Context, val categoryType: String) :
     ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
 
     private val background: ColorDrawable = ColorDrawable(Color.argb(67,67,4,107))

@@ -14,10 +14,9 @@
 
     <TextView
         android:id="@+id/category"
-        android:textColor="#ffffff"
+        android:textColor="@color/black"
         android:layout_width="0dp"
         android:layout_gravity="center"
-
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize="33dp"
@@ -25,7 +24,6 @@
 
     <Button
         android:id="@+id/form_add"
-
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/baseline_check_24" />
@@ -37,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="33dp"
-        android:textColorHint="#ffffff"
+        android:textColorHint="@color/icon"
         android:ems="10"
         android:gravity="center"
         android:hint="Title"
@@ -50,8 +48,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:gravity="center"
-        android:textColorHint="#ffffff"
-        android:hint="Text"
+        android:textColorHint="@color/icon"
+        android:hint="Description"
         android:inputType="textMultiLine"
         />
 

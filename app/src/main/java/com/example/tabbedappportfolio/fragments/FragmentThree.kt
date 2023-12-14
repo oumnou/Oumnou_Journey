@@ -53,7 +53,6 @@ class FragmentThree : Fragment() {
             queryEdt.setText("")
 
             if (message.isNotBlank()) {
-
                 getResponse(message)
             } else {
                 Toast.makeText(requireContext(), "Please enter your question..", Toast.LENGTH_SHORT).show()
@@ -89,13 +88,6 @@ class FragmentThree : Fragment() {
                     list[list.size - 1] = Message(query.trim(), responseMsg.trim())
                     adapter.notifyDataSetChanged()
                 },
-
-
-
-
-
-
-
 
                 Response.ErrorListener { error ->
                     Log.e("TAGAPI", "Error is: ${error.message}\nResponse: ${String(error.networkResponse.data)}")

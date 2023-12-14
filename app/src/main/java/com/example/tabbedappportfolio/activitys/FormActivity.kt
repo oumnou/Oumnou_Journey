@@ -45,10 +45,9 @@ class FormActivity : AppCompatActivity() {
         }
         categoryNumber = bundle
         val category = when (bundle) {
-            0 -> "about me"
-            1 -> "education"
-            2 -> "skills"
-            else -> "about me"
+            0 -> "About me"
+            1 -> "Skills"
+            else -> "About me"
         }
 
         categorytv.text = category
@@ -64,7 +63,6 @@ class FormActivity : AppCompatActivity() {
                     text = text,
                     imageResource = imagePath
                 )
-                Log.d("tag", "OnClick $imagePath")
                 saveItemsToDatabase(category, newData)
             }
 

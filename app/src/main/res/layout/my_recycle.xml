@@ -21,7 +21,8 @@
             android:layout_marginTop="8dp"
             android:textColor="@color/purple_700"
             android:fontFamily="casual"
-
+            android:textAllCaps="true"
+            android:textStyle="bold"
             android:text="Communication"
             android:textSize="26dp" />
 

@@ -32,7 +32,6 @@ open class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         initToolbar()
-        Log.d("log","onCreate")
 
 
         val tabLayout: TabLayout = findViewById(R.id.tab_layout)
@@ -61,8 +60,7 @@ open class MainActivity : AppCompatActivity() {
                 READ_EXTERNAL_STORAGE_REQUEST_CODE
             )
         } else {
-            // Permission already granted, proceed with your logic
-            // ...
+
         }
 
 
@@ -132,14 +130,11 @@ open class MainActivity : AppCompatActivity() {
 
     }
 
-
     private fun initToolbar() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar!!.title = "Oumaima"
     }
-
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -160,7 +155,10 @@ open class MainActivity : AppCompatActivity() {
 
 
         }
-    }override fun onRequestPermissionsResult(
+    }
+
+
+    override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
         grantResults: IntArray
@@ -178,9 +176,14 @@ open class MainActivity : AppCompatActivity() {
             }
             // Handle other permission requests if needed
         }
+
+
     }
 
-
+    override fun onBackPressed() {
+        // Call super.onBackPressed() to close the app
+        super.onBackPressed()
+    }
 
 
 }

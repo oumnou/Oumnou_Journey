@@ -8,4 +8,18 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+
+
+    <color name="bgTheme">#EFE6F6</color>
+    <color name="icon">#1E034E</color>
+    <color name="endColor">#F3F0F8</color>
+    <color name="startColor">#9259CC</color>
+    <color name="btnAdd">#E91E63</color>
+    <color name="chatQuestion"></color>
+    <color name="deleteBg">#C6B7DC</color>
+
+
+
 </resources>

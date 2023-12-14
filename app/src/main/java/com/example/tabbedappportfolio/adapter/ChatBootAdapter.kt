@@ -38,7 +38,7 @@ class ChatBootAdapter(private var itemList: List<Message>) : RecyclerView.Adapte
     }
 
     override fun onItemDismiss(position: Int) {
-        TODO("Not yet implemented")
+
     }
 
 

@@ -28,7 +28,7 @@ class FragmentOne : Fragment(){
 
         // Assuming you have a RecyclerView with the ID 'recyclerView' in your me_beautiful_me.xml layout
         recyclerView = rootView.findViewById(R.id.recycleMe)
-        categoryType = "about me"
+        categoryType = "About me"
 
         // Set up the RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
