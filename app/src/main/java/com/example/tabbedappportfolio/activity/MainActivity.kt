@@ -1,4 +1,4 @@
-package com.example.tabbedappportfolio.activitys
+package com.example.tabbedappportfolio.activity
 
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -14,37 +14,36 @@ import androidx.viewpager.widget.ViewPager
 import android.Manifest
 import com.example.tabbedappportfolio.R
 import com.example.tabbedappportfolio.adapter.SampleAdapter
-import com.example.tabbedappportfolio.fragments.FragmentFour
-import com.example.tabbedappportfolio.fragments.FragmentOne
-import com.example.tabbedappportfolio.fragments.FragmentThree
-import com.example.tabbedappportfolio.fragments.FragmentTwo
+import com.example.tabbedappportfolio.fragment.FragmentFour
+import com.example.tabbedappportfolio.fragment.FragmentOne
+import com.example.tabbedappportfolio.fragment.FragmentThree
+import com.example.tabbedappportfolio.fragment.FragmentTwo
 import com.google.android.material.tabs.TabLayout
 
 open class MainActivity : AppCompatActivity() {
+
+    //region Declaration
     private val READ_EXTERNAL_STORAGE_REQUEST_CODE = 123
-    private lateinit var  addButton: Button
     private var REQUEST_CODE = 22
-
-
+    private lateinit var  tabLayout: TabLayout
+    lateinit var  viewPager: ViewPager
+    lateinit var  adapter:SampleAdapter
+    lateinit var bundle : Bundle
+    private lateinit var addButton: Button
+    //endregion
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         initToolbar()
 
 
-        val tabLayout: TabLayout = findViewById(R.id.tab_layout)
-        val viewPager: ViewPager = findViewById(R.id.view_pager)
-        val adapter = SampleAdapter(supportFragmentManager)
-
-
-
+        tabLayout = findViewById(R.id.tab_layout)
+        viewPager = findViewById(R.id.view_pager)
+        adapter= SampleAdapter(supportFragmentManager)
         addButton = findViewById(R.id.button)
-
         viewPager.adapter = adapter
-        val bundle = Bundle()
-        val addButton: Button = findViewById(R.id.button)
+        bundle = Bundle()
 
 
 // Check if the app has permission to read external storage
@@ -59,9 +58,7 @@ open class MainActivity : AppCompatActivity() {
                 arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
                 READ_EXTERNAL_STORAGE_REQUEST_CODE
             )
-        } else {
-
-        }
+        } else {}
 
 
 
@@ -116,26 +113,20 @@ open class MainActivity : AppCompatActivity() {
             }
         })
 
-        // Set up the TabLayout with the ViewPager
         tabLayout.setupWithViewPager(viewPager)
 
 }
-
     fun showButton() {
         addButton.visibility = View.VISIBLE
     }
-
     fun hideButton() {
         addButton.visibility = View.GONE
-
     }
-
     private fun initToolbar() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar!!.title = "Oumaima"
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -156,8 +147,6 @@ open class MainActivity : AppCompatActivity() {
 
         }
     }
-
-
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -174,7 +163,6 @@ open class MainActivity : AppCompatActivity() {
                     Log.e("Permission", "Read external storage permission denied")
                 }
             }
-            // Handle other permission requests if needed
         }
 
 

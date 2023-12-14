@@ -1,4 +1,4 @@
-package com.example.tabbedappportfolio.fragments
+package com.example.tabbedappportfolio.fragment
 
 
 import android.os.Bundle
@@ -15,7 +15,7 @@ class FragmentFour: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?): View? =
-        inflater!!.inflate(R.layout.todo_list, container, false)
+        inflater!!.inflate(R.layout.todo_list_layout, container, false)
 
 
     companion object {

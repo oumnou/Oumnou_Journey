@@ -4,10 +4,10 @@ package com.example.tabbedappportfolio.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.example.tabbedappportfolio.fragments.FragmentFour
-import com.example.tabbedappportfolio.fragments.FragmentOne
-import com.example.tabbedappportfolio.fragments.FragmentThree
-import com.example.tabbedappportfolio.fragments.FragmentTwo
+import com.example.tabbedappportfolio.fragment.FragmentFour
+import com.example.tabbedappportfolio.fragment.FragmentOne
+import com.example.tabbedappportfolio.fragment.FragmentThree
+import com.example.tabbedappportfolio.fragment.FragmentTwo
 class SampleAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
     private val fragments: MutableList<Fragment> = mutableListOf()
 

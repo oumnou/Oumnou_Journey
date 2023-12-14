@@ -1,6 +1,7 @@
 package com.example.tabbedappportfolio.adapter
 import android.content.ContentUris
 import android.content.Context
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Color
@@ -10,22 +11,24 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tabbedappportfolio.R
-import com.example.tabbedappportfolio.dbhelper.MyDBHelper
-import com.example.tabbedappportfolio.model.MyItem
+import com.example.tabbedappportfolio.dbhelper.ItemsDBHelper
+import com.example.tabbedappportfolio.model.Item
 
 
-class RecycleAdapter(var itemList: List<MyItem>) : RecyclerView.Adapter<RecycleAdapter.MyViewHolder>(),
+class RecyclerAdapter(var itemList: List<Item>,var context: Context) : RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>(),
     ItemTouchHelperAdapter {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.my_recycle, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.items_recycle, parent, false)
         return MyViewHolder(view)
     }
 
@@ -33,7 +36,11 @@ class RecycleAdapter(var itemList: List<MyItem>) : RecyclerView.Adapter<RecycleA
         val item = itemList[position]
 
         holder.textView1.text = item.title
-        holder.textView2.text = item.text
+        holder.textView2.text = item.description
+
+        holder.shareButton.setOnClickListener {
+            shareItem(item.title, item.description, item.imageResource, context)
+        }
 
         val contentResolver = holder.itemView.context.contentResolver
         try {
@@ -63,6 +70,21 @@ class RecycleAdapter(var itemList: List<MyItem>) : RecyclerView.Adapter<RecycleA
 
 
     }
+    private fun shareItem(title: String, text: String, photoUrl: String, context: Context) {
+        val shareIntent = Intent(Intent.ACTION_SEND)
+        shareIntent.type = "text/plain"
+
+        // You can modify the sharing message format as per your preference
+        val shareMessage = "Check out this item!\n\nTitle: $title\nText: $text"
+
+        // Add the photo URL to the message (if available)
+        if (photoUrl.isNotEmpty()) {
+            shareMessage.plus("\n\nPhoto: $photoUrl")
+        }
+
+        shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage)
+        context.startActivity(Intent.createChooser(shareIntent, "Share via"))
+    }
 
 
     override fun getItemCount(): Int {
@@ -74,11 +96,13 @@ class RecycleAdapter(var itemList: List<MyItem>) : RecyclerView.Adapter<RecycleA
         val textView1: TextView = itemView.findViewById(R.id.tv_title)
         val textView2: TextView = itemView.findViewById(R.id.tv_text)
         val imageView: ImageView = itemView.findViewById(R.id.image)
+        val shareButton: ImageView = itemView.findViewById(R.id.share_btn)
+
     }
 
 
 
-    fun updateData(newItemList: List<MyItem>) {
+    fun updateData(newItemList: List<Item>) {
         itemList = newItemList
         notifyDataSetChanged()
 
@@ -98,12 +122,12 @@ interface ItemTouchHelperAdapter {
 }
 
 
-class ItemTouchHelperCallback(private val adapter: RecycleAdapter, val context :Context, val categoryType: String) :
+class ItemTouchHelperCallback(private val adapter: RecyclerAdapter, val context :Context, val categoryType: String) :
     ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
 
     private val background: ColorDrawable = ColorDrawable(Color.argb(67,67,4,107))
     private val deleteIcon: Drawable? =
-        ContextCompat.getDrawable(context, R.drawable.ic_delete)
+        ContextCompat.getDrawable(context, R.drawable.delete_btn)
 
     override fun onMove(
         recyclerView: RecyclerView,
@@ -117,7 +141,7 @@ class ItemTouchHelperCallback(private val adapter: RecycleAdapter, val context :
         val position = viewHolder.adapterPosition
         val deletedItem = adapter.itemList[position]
 
-        val dbHelper = MyDBHelper(context, categoryType)
+        val dbHelper = ItemsDBHelper(context, categoryType)
         dbHelper.deleteItem(deletedItem)
 
         adapter.onItemDismiss(position)

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/layoutshape"
+    android:background="@drawable/bg_shape"
     android:gravity="center"
     android:layout_height="wrap_content">
 
@@ -26,7 +26,7 @@
         android:id="@+id/form_add"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@drawable/baseline_check_24" />
+        android:background="@drawable/check_btn" />
 
 </LinearLayout>
     <EditText
@@ -37,6 +37,7 @@
         android:layout_margin="33dp"
         android:textColorHint="@color/icon"
         android:ems="10"
+        android:textColor="@color/icon"
         android:gravity="center"
         android:hint="Title"
         android:inputType="text"
@@ -49,6 +50,7 @@
         android:ems="10"
         android:gravity="center"
         android:textColorHint="@color/icon"
+        android:textColor="@color/icon"
         android:hint="Description"
         android:inputType="textMultiLine"
         />
@@ -56,15 +58,11 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_margin="33dp"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="240dp"
         android:adjustViewBounds="true"
-        android:src="@drawable/photo"
+        android:src="@drawable/photo_btn"
         />
-
-
-
 
 </LinearLayout>

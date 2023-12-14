@@ -1,23 +1,22 @@
-package com.example.tabbedappportfolio.activitys
+package com.example.tabbedappportfolio.activity
 
-import com.example.tabbedappportfolio.dbhelper.MyDBHelper
+import com.example.tabbedappportfolio.dbhelper.ItemsDBHelper
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tabbedappportfolio.R
-import com.example.tabbedappportfolio.model.MyItem
+import com.example.tabbedappportfolio.model.Item
 import kotlin.properties.Delegates
 
 class FormActivity : AppCompatActivity() {
 
     //region Declaration
-    private lateinit var newData: MyItem
+    private lateinit var newData: Item
     private val PICK_IMAGE_REQUEST = 1
     private var bundle: Int = 0
     private lateinit var imagePath: String
@@ -58,9 +57,9 @@ class FormActivity : AppCompatActivity() {
 
             if (title.isNotEmpty()) {
 
-                newData = MyItem(
+                newData = Item(
                     title = title,
-                    text = text,
+                    description = text,
                     imageResource = imagePath
                 )
                 saveItemsToDatabase(category, newData)
@@ -75,6 +74,8 @@ class FormActivity : AppCompatActivity() {
         }
     }
 
+
+    //region Functions
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -87,7 +88,6 @@ class FormActivity : AppCompatActivity() {
 
         }
     }
-
     private fun getRealPathFromURI(uri: Uri): String? {
         val projection = arrayOf(MediaStore.Images.Media.DATA)
         val cursor = contentResolver.query(uri, projection, null, null, null)
@@ -97,23 +97,18 @@ class FormActivity : AppCompatActivity() {
         cursor?.close()
         return path
     }
-
-
-    private fun saveItemsToDatabase(categoryType: String, item: MyItem) {
-        val dbHelper = MyDBHelper(this, categoryType)
-        dbHelper.insertItem(item.title, item.text, item.imageResource)
+    private fun saveItemsToDatabase(categoryType: String, item: Item) {
+        val dbHelper = ItemsDBHelper(this, categoryType)
+        dbHelper.insertItem(item.title, item.description, item.imageResource)
     }
-
     override fun finish() {
         val returnIntent = Intent()
-
-
         val bundle = Bundle()
         bundle.putInt("selectedTabIndex", categoryNumber)
         returnIntent.putExtra("bundle", bundle)
-
         setResult(RESULT_OK, returnIntent)
 
         super.finish()
     }
+    //endregion
 }

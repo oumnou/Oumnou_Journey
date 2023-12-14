@@ -17,7 +17,6 @@ class ChatBootAdapter(private var itemList: List<Message>) : RecyclerView.Adapte
         return MyViewHolder(view)
     }
 
-
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = itemList[position]
         holder.question.text = item.question
@@ -25,12 +24,10 @@ class ChatBootAdapter(private var itemList: List<Message>) : RecyclerView.Adapte
 
     }
 
-
     override fun getItemCount(): Int {
         return itemList.size
     }
 
-    // ViewHolder class
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val question: TextView = itemView.findViewById(R.id.idTVQuestion)

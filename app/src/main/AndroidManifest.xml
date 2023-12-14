@@ -20,19 +20,19 @@
         android:theme="@style/Theme.TabbedAppPortfolio"
         tools:targetApi="31">
         <activity
-            android:name=".activitys.MainActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
 
-        <activity android:name=".activitys.FormActivity"
+        <activity android:name=".activity.FormActivity"
             android:theme="@style/CustomAddActivityDialog"
 
            />
 
 
-        <activity android:name=".activitys.WelcomeActivity"
+        <activity android:name=".activity.WelcomeActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 

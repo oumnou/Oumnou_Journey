@@ -1,4 +1,4 @@
-package com.example.tabbedappportfolio.fragments
+package com.example.tabbedappportfolio.fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,7 +36,7 @@ class FragmentThree : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.chatbot, container, false)
+        val rootView = inflater.inflate(R.layout.chatbot_layout, container, false)
         recyclerView = rootView.findViewById(R.id.rv_messages)
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())

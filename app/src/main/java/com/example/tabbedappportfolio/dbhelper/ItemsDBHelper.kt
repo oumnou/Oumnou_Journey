@@ -4,9 +4,9 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.example.tabbedappportfolio.model.MyItem
+import com.example.tabbedappportfolio.model.Item
 
-class MyDBHelper(context: Context, private val categoryType: String) :
+class ItemsDBHelper(context: Context, private val categoryType: String) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
@@ -52,8 +52,8 @@ class MyDBHelper(context: Context, private val categoryType: String) :
         db.close()
     }
 
-    fun getAllItems(): List<MyItem> {
-        val items = mutableListOf<MyItem>()
+    fun getAllItems(): List<Item> {
+        val items = mutableListOf<Item>()
         val db = readableDatabase
 
         val selection = "$COLUMN_TEXT3 = ?"  // Add the condition for the categoryType
@@ -75,7 +75,7 @@ class MyDBHelper(context: Context, private val categoryType: String) :
             val text = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TEXT2))
             val imageResource = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_IMAGE_RESOURCE))
 
-            items.add(MyItem(title, text, imageResource))
+            items.add(Item(title, text, imageResource))
         }
 
         cursor.close()
@@ -84,10 +84,10 @@ class MyDBHelper(context: Context, private val categoryType: String) :
         return items
     }
 
-    fun deleteItem(item: MyItem): Boolean {
+    fun deleteItem(item: Item): Boolean {
         val db = this.writableDatabase
         val whereClause = "$COLUMN_TEXT1 = ? AND $COLUMN_TEXT2 = ?"
-        val whereArgs = arrayOf(item.title, item.text)
+        val whereArgs = arrayOf(item.title, item.description)
         val deletedRows = db.delete(tableName, whereClause, whereArgs)
         db.close()
         return deletedRows > 0
