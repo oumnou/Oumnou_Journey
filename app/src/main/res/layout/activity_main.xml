@@ -30,6 +30,7 @@
             android:layout_gravity="start"
             app:tabGravity="fill"
             app:tabMode="fixed"
+
             app:tabTextColor="#000000" />
     </com.google.android.material.appbar.AppBarLayout>
 

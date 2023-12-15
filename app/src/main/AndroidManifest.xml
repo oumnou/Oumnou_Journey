@@ -31,7 +31,6 @@
 
            />
 
-
         <activity android:name=".activity.WelcomeActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">

@@ -92,7 +92,7 @@ open class MainActivity : AppCompatActivity() {
         viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
 
-                if (adapter.getItem(position) is FragmentThree ||adapter.getItem(position) is FragmentTwo) {
+                if (adapter.getItem(position) is FragmentThree || adapter.getItem(position) is FragmentTwo) {
                     hideButton()
                 }else{
                     showButton()
@@ -100,9 +100,9 @@ open class MainActivity : AppCompatActivity() {
             }
 
             override fun onPageSelected(position: Int) {
-                if (adapter.getItem(position) is FragmentThree) {
+                if (adapter.getItem(position) is FragmentThree || adapter.getItem(position) is FragmentTwo) {
                     hideButton()
-                }else{
+                }else {
                     showButton()
                 }
             }
@@ -121,27 +121,25 @@ open class MainActivity : AppCompatActivity() {
     fun hideButton() {
         addButton.visibility = View.GONE
     }
+
+
     private fun initToolbar() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        supportActionBar!!.title = "Oumaima"
+        supportActionBar?.title = "Oumaima"
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK && data != null) {
 
-
-            val bundle = data.getBundleExtra("bundle")
-            val selectedTabIndex = bundle?.getInt("selectedTabIndex", 0) ?: 0
-
             // Update the data in the corresponding fragment
-            val fragment = supportFragmentManager.fragments[selectedTabIndex]
-            if(fragment is FragmentOne){
-                fragment.updateData()
+            val fragment = supportFragmentManager.fragments[0] as FragmentOne
+            fragment.updateData()
 
 
-        }
+
     }
         }
     override fun onRequestPermissionsResult(

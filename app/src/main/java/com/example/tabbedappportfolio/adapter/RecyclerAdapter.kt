@@ -38,17 +38,17 @@ class RecyclerAdapter(var itemList: List<Item>,var context: Context) : RecyclerV
         holder.textView2.text = item.description
 
         holder.shareButton.setOnClickListener {
-            shareItem(item.title, item.description, item.imageResource, context)
+            shareItem(item.title, item.description, item.imagePath, context)
         }
 
-        if (item.imageResource != "") {
+        if (item.imagePath != "") {
         val contentResolver = holder.itemView.context.contentResolver
         try {
             // Use MediaStore to get the content URI for the file path
             val contentUri = MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
             val projection = arrayOf(MediaStore.Images.Media._ID)
             val selection = "${MediaStore.Images.Media.DATA} = ?"
-            val selectionArgs = arrayOf(item.imageResource)
+            val selectionArgs = arrayOf(item.imagePath)
             val cursor = contentResolver.query(contentUri, projection, selection, selectionArgs, null)
 
             if (cursor != null && cursor.moveToFirst()) {

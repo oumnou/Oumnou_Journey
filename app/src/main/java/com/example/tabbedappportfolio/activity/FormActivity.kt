@@ -50,26 +50,21 @@ class FormActivity : AppCompatActivity() {
         }
 
         categorytv.text = category
+
+
         okButton.setOnClickListener {
 
             val title = titleView.text.toString()
             val text = textView.text.toString()
 
             if (title.isNotEmpty()) {
-                newData = if (imagePath!=""){
+                newData =
+                    Item(
+                        title = title,
+                        description = text,
+                        imagePath = imagePath
+                    )
 
-                    Item(
-                        title = title,
-                        description = text,
-                        imageResource = imagePath
-                    )
-                }else{
-                    Item(
-                        title = title,
-                        description = text,
-                        imageResource = ""
-                    )
-                }
                 saveItemsToDatabase(category, newData)
             }
 
@@ -107,8 +102,9 @@ class FormActivity : AppCompatActivity() {
     }
     private fun saveItemsToDatabase(categoryType: String, item: Item) {
         val dbHelper = ItemsDBHelper(this, categoryType)
-        dbHelper.insertItem(item.title, item.description, item.imageResource)
+        dbHelper.insertItem(item.title, item.description, item.imagePath)
     }
+
     override fun finish() {
         val returnIntent = Intent()
         val bundle = Bundle()

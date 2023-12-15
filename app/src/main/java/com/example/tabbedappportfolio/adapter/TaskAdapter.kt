@@ -16,7 +16,6 @@ import com.example.tabbedappportfolio.model.TaskItem
 
 class TaskAdapter(private val context: Context, private val items: ArrayList<TaskItem>, val dbHelper: TaskDBHelper) : BaseAdapter() { //The 'item' class extends BaseAdapter and represents the adapter for your to-do list items.
 
-    private lateinit var deleteIcon: ImageView
 
 
     override fun getCount(): Int {
@@ -32,15 +31,24 @@ class TaskAdapter(private val context: Context, private val items: ArrayList<Tas
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val view: View = convertView ?: LayoutInflater.from(context).inflate(R.layout.task_recycler, parent, false)
+        val view: View
+        val viewHolder: ViewHolder
 
-        val checkBox: CheckBox = view.findViewById(R.id.myCheckBox)
-        val textView: TextView = view.findViewById(R.id.myTextView)
+        if (convertView == null) {
+            view = LayoutInflater.from(context).inflate(R.layout.task_recycler, parent, false)
+            viewHolder = ViewHolder(view)
+            view.tag = viewHolder
+        } else {
+            view = convertView
+            viewHolder = convertView.tag as ViewHolder
+        }
 
-        textView.text = items[position].text
-        checkBox.isChecked = items[position].isChecked == 1
-        deleteIcon = view.findViewById(R.id.deleteIcon)
+        val checkBox = viewHolder.checkBox
+        val textView = viewHolder.textView
+        val deleteIcon = viewHolder.deleteIcon
 
+        checkBox.isChecked = items[position].isChecked==1
+        textView.text =  items[position].text
 
         deleteIcon.setOnClickListener {
             dbHelper.deleteItem(items[position])
@@ -65,4 +73,12 @@ class TaskAdapter(private val context: Context, private val items: ArrayList<Tas
         return view
 
      }
+
+    private class ViewHolder(view: View) {
+        var checkBox: CheckBox = view.findViewById(R.id.myCheckBox)
+        var textView: TextView = view.findViewById(R.id.myTextView)
+        var deleteIcon: ImageView = view.findViewById(R.id.deleteIcon)
+
+
+    }
 }

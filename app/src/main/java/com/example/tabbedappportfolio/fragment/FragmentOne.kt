@@ -62,6 +62,7 @@ class FragmentOne : Fragment(){
 
         if (updatedData.isNotEmpty()) {
             // Update the data in the adapter
+
             adapter.updateData(updatedData)
         }
 

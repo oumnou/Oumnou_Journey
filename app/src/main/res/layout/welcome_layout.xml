@@ -1,62 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@drawable/gradient_bg"
+    android:background="@android:color/black"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="129dp"
-        android:layout_height="131dp"
-        android:background="@drawable/round_button"
-        android:src="@mipmap/logo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.176">
-
-    </ImageView>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="322dp"
-        android:gravity="center"
-        android:layout_height="wrap_content"
-
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="344dp"
-        android:lineHeight="36dp"
-        android:text="@string/welcome_message"
-        android:textColor="#673AB7"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="322dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-
-        android:layout_marginTop="56dp"
-        android:lineHeight="26dp"
-        android:text="@string/Explore"
-        android:textColor="#FFFFFF"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
-
-    </TextView>
-
+<TextureView
+android:id="@+id/textureView"
+android:layout_width="wrap_content"
+android:layout_height="0dp"
+app:layout_constraintBottom_toBottomOf="parent"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
