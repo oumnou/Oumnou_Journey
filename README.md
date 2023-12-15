@@ -44,7 +44,7 @@ Contributions to Oumnou_Journey are welcome! If you have any ideas for improveme
 
 ## Screens
 
-![Alt text](./screen/page0.jpg)
-![Alt text](./screen/page1.jpg)
-![Alt text](./screen/page2.jpg)
-![Alt text](./screen/page3.jpg)
+* ![Alt text](./screen/page0.jpg)
+* ![Alt text](./screen/page1.jpg)
+* ![Alt text](./screen/page2.jpg)
+* ![Alt text](./screen/page3.jpg)
