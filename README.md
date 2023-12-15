@@ -41,3 +41,10 @@ Contributions to Oumnou_Journey are welcome! If you have any ideas for improveme
 - Special thanks to OpenAI for providing the ChatGPT API.
 - Thanks to the Kotlin and Android Studio communities for their support.
 - Happy learning and organizing your academic journey with Oumnou!
+
+## Screens
+
+![Alt text](./screen/page0.jpg)
+![Alt text](./screen/page1.jpg)
+![Alt text](./screen/page2.jpg)
+![Alt text](./screen/page3.jpg)

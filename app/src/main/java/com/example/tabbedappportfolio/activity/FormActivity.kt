@@ -64,7 +64,6 @@ class FormActivity : AppCompatActivity() {
                         description = text,
                         imagePath = imagePath
                     )
-
                 saveItemsToDatabase(category, newData)
             }
 
