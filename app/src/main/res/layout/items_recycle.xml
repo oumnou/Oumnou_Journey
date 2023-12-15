@@ -53,10 +53,10 @@
 
     <ImageView
         android:id="@+id/share_btn"
-        android:layout_width="53dp"
-        android:layout_height="53dp"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
         android:layout_gravity="end"
-        android:layout_margin="13dp"
+        android:layout_margin="15dp"
         android:src="@drawable/share_btn">
 
     </ImageView>

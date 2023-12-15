@@ -75,7 +75,7 @@ class RecyclerAdapter(var itemList: List<Item>,var context: Context) : RecyclerV
         shareIntent.type = "text/plain"
 
         // You can modify the sharing message format as per your preference
-        val shareMessage = "Check out this item!\n\nTitle: $title\nText: $text"
+        val shareMessage = "Hi! Check my new experience in Life : \n\n Title : $title\n Description : $text"
 
         // Add the photo URL to the message (if available)
         if (photoUrl.isNotEmpty()) {

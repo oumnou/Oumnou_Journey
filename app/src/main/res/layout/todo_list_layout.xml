@@ -1,25 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:background="#F3ECFF"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_bg"
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:src="@drawable/wait"
-        android:layout_height="200dp">
-
-    </ImageView>
+    >
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Always Feels Nice to be organized :)"
+        android:textSize="30dp"
+        android:layout_margin="25dp"
+        android:fontFamily="casual"
+        android:textStyle="italic"
+        android:textColor="#673AB7"
+
+        />
+    <TextView
+        android:id="@+id/todayDateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Waiting for Manar ..."
-        android:textSize="23dp"
+        android:text="Today's Date: "
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginLeft="25dp"
+        android:textColor="#DDDBDB"/>
 
-        ></TextView>
+    <LinearLayout
+        android:layout_margin="15dp"
+
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:layout_width="249dp"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:layout_marginRight="30dp"
+            android:id="@+id/etNewItem"
+            />
+
+        <Button
+            android:id="@+id/btnAddItem"
+            android:background="@drawable/button2"
+            android:layout_width="match_parent"
+            android:textColor="@color/white"
+            android:backgroundTint="#A27DD8"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:fontFamily="casual"
+
+            />
+
+    </LinearLayout>
+
+
+
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lvItems"
+        android:layout_margin="20dp"/>
+
+
+
+
 
 </LinearLayout>
