@@ -5,9 +5,8 @@
     android:layout_height="90dp"
     android:padding="16dp"
     android:background="@drawable/bg_shape"
-    android:layout_margin="40dp"
-    android:gravity="center"
-    >
+    android:layout_marginBottom="40dp"
+    android:gravity="center">
 
 
     <CheckBox

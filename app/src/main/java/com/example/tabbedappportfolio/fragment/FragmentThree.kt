@@ -1,123 +1,89 @@
 package com.example.tabbedappportfolio.fragment
 
+
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
+import android.widget.ListView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.android.volley.RequestQueue
-import com.android.volley.Response
-import com.android.volley.RetryPolicy
-import com.android.volley.VolleyError
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.Volley
 import com.example.tabbedappportfolio.R
-import com.example.tabbedappportfolio.adapter.ChatBootAdapter
-import com.example.tabbedappportfolio.model.Message
-import org.json.JSONObject
+import com.example.tabbedappportfolio.adapter.TaskAdapter
+import com.example.tabbedappportfolio.dbhelper.TaskDBHelper
+import com.example.tabbedappportfolio.model.TaskItem
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
-class FragmentThree : Fragment() {
 
+class FragmentThree: Fragment() {
 
-    private lateinit var sendBtn: Button
-    private lateinit var adapter: ChatBootAdapter
-    private lateinit var queryEdt: EditText
-    private lateinit var recyclerView: RecyclerView
-    lateinit var list: ArrayList<Message>
-    var url = "https://api.openai.com/v1/completions"
+    private lateinit var dbHelper: TaskDBHelper
+    private lateinit var items: ArrayList<TaskItem>
+    private lateinit var taskAdapter: TaskAdapter
+    private lateinit var lvItems: ListView
+    private lateinit var btnAddItem: Button
+    private lateinit var etNewItem: EditText
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.chatbot_layout, container, false)
-        recyclerView = rootView.findViewById(R.id.rv_messages)
+        val rootView = inflater.inflate(R.layout.todo_list_layout, container, false)
 
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        list = arrayListOf()
-        adapter = ChatBootAdapter(list)
-        recyclerView.adapter = adapter
+        val todayDateTextView = rootView.findViewById<TextView>(R.id.todayDateTextView)
+        val calendar: Calendar = Calendar.getInstance()
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val currentDate: String = dateFormat.format(calendar.time)
+        todayDateTextView.text = "Today's Date: $currentDate"
 
-        queryEdt = rootView.findViewById(R.id.et_message)
-        sendBtn = rootView.findViewById(R.id.btn_send)
 
-        sendBtn.setOnClickListener {
-            val message = queryEdt.text.toString()
-            queryEdt.setText("")
+        lvItems = rootView.findViewById(R.id.lvItems)
+        btnAddItem = rootView.findViewById(R.id.btnAddItem)
+        etNewItem = rootView.findViewById(R.id.etNewItem)
+        dbHelper = TaskDBHelper(requireContext())
+        items = ArrayList()
 
-            if (message.isNotBlank()) {
-                getResponse(message)
-            } else {
-                Toast.makeText(requireContext(), "Please enter your question..", Toast.LENGTH_SHORT).show()
-            }
+        btnAddItem.setOnClickListener {
+
+            val newTask = TaskItem(etNewItem.text.toString(), 0)
+            items.add(newTask)
+            dbHelper.insertItem(newTask)
+            taskAdapter.notifyDataSetChanged()
+            etNewItem.text.clear()
+
         }
+
+
+        items.addAll(dbHelper.getItems())
+
+        taskAdapter = TaskAdapter(requireContext(), items, dbHelper)
+        lvItems.adapter = taskAdapter
+
+
         return rootView
     }
 
-    private fun getResponse(query: String) {
-        list.add(Message(query, "Please wait..."))
-        adapter.notifyDataSetChanged()
 
-        // Your existing code for making API requests and handling responses
-        val queue: RequestQueue = Volley.newRequestQueue(requireContext())
-        val jsonObject: JSONObject? = JSONObject()
 
-        jsonObject?.put("model", "text-davinci-003")
-        jsonObject?.put("prompt", query)
-        jsonObject?.put("temperature", 0)
-        jsonObject?.put("max_tokens", 100)
-        jsonObject?.put("top_p", 1)
-        jsonObject?.put("frequency_penalty", 0.0)
-        jsonObject?.put("presence_penalty", 0.0)
-
-        val postRequest: JsonObjectRequest =
-            object : JsonObjectRequest(Method.POST, url, jsonObject,
-                Response.Listener { response ->
-
-                    val responseMsg: String =
-                        response.getJSONArray("choices").getJSONObject(0).getString("text")
-
-                    // Updating the last item in the list with the actual response
-                    list[list.size - 1] = Message(query.trim(), responseMsg.trim())
-                    adapter.notifyDataSetChanged()
-                },
-
-                Response.ErrorListener { error ->
-                    Log.e("TAGAPI", "Error is: ${error.message}\nResponse: ${String(error.networkResponse.data)}")
-
-                }) {
-                override fun getHeaders(): MutableMap<String, String> {
-                    val params: MutableMap<String, String> = HashMap()
-                    params["Content-Type"] = "application/json"
-                    params["Authorization"] = "Bearer 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"
-                    return params
-                }
-            }
-
-        postRequest.retryPolicy = object : RetryPolicy {
-            override fun getCurrentTimeout(): Int {
-                return 50000
-            }
-
-            override fun getCurrentRetryCount(): Int {
-                return 50000
-            }
-
-            @Throws(VolleyError::class)
-            override fun retry(error: VolleyError) {
-            }
-        }
-
-        queue.add(postRequest)
-    }
 
     companion object {
         fun newInstance(): FragmentThree = FragmentThree()
     }
-}
+
+    override fun onDestroy() {
+        super.onDestroy()
+        dbHelper.close()
+    }
+        }
+
+
+
+
+
+
+

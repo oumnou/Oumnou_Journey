@@ -10,12 +10,11 @@ import android.graphics.drawable.Drawable
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tabbedappportfolio.R
@@ -42,6 +41,7 @@ class RecyclerAdapter(var itemList: List<Item>,var context: Context) : RecyclerV
             shareItem(item.title, item.description, item.imageResource, context)
         }
 
+        if (item.imageResource != "") {
         val contentResolver = holder.itemView.context.contentResolver
         try {
             // Use MediaStore to get the content URI for the file path
@@ -63,10 +63,17 @@ class RecyclerAdapter(var itemList: List<Item>,var context: Context) : RecyclerV
 
                 // Set the bitmap to the ImageView
                 holder.imageView.setImageBitmap(bitmap)
+                cursor?.close()
+
+            }
+        } catch (e: Exception) {}
+
+    }
+        else{
+                holder.imageView.visibility =  GONE
+
             }
 
-            cursor?.close()
-        } catch (e: Exception) {}
 
 
     }

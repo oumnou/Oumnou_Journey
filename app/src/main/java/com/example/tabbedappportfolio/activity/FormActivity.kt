@@ -37,6 +37,7 @@ class FormActivity : AppCompatActivity() {
         imageView = findViewById(R.id.imageView)
         okButton = findViewById(R.id.form_add)
         categorytv = findViewById(R.id.category)
+        imagePath = ""
         val bundleIntent = intent.extras
 
         if (bundleIntent != null) {
@@ -45,7 +46,6 @@ class FormActivity : AppCompatActivity() {
         categoryNumber = bundle
         val category = when (bundle) {
             0 -> "About me"
-            1 -> "Skills"
             else -> "About me"
         }
 
@@ -56,12 +56,20 @@ class FormActivity : AppCompatActivity() {
             val text = textView.text.toString()
 
             if (title.isNotEmpty()) {
+                newData = if (imagePath!=""){
 
-                newData = Item(
-                    title = title,
-                    description = text,
-                    imageResource = imagePath
-                )
+                    Item(
+                        title = title,
+                        description = text,
+                        imageResource = imagePath
+                    )
+                }else{
+                    Item(
+                        title = title,
+                        description = text,
+                        imageResource = ""
+                    )
+                }
                 saveItemsToDatabase(category, newData)
             }
 

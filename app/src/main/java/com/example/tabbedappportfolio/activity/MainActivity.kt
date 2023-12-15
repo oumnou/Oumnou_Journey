@@ -14,9 +14,8 @@ import androidx.viewpager.widget.ViewPager
 import android.Manifest
 import com.example.tabbedappportfolio.R
 import com.example.tabbedappportfolio.adapter.SampleAdapter
-import com.example.tabbedappportfolio.fragment.FragmentFour
-import com.example.tabbedappportfolio.fragment.FragmentOne
 import com.example.tabbedappportfolio.fragment.FragmentThree
+import com.example.tabbedappportfolio.fragment.FragmentOne
 import com.example.tabbedappportfolio.fragment.FragmentTwo
 import com.google.android.material.tabs.TabLayout
 
@@ -93,7 +92,7 @@ open class MainActivity : AppCompatActivity() {
         viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
 
-                if (adapter.getItem(position) is FragmentFour ||adapter.getItem(position) is FragmentThree) {
+                if (adapter.getItem(position) is FragmentThree ||adapter.getItem(position) is FragmentTwo) {
                     hideButton()
                 }else{
                     showButton()
@@ -101,7 +100,7 @@ open class MainActivity : AppCompatActivity() {
             }
 
             override fun onPageSelected(position: Int) {
-                if (adapter.getItem(position) is FragmentFour) {
+                if (adapter.getItem(position) is FragmentThree) {
                     hideButton()
                 }else{
                     showButton()
@@ -140,13 +139,11 @@ open class MainActivity : AppCompatActivity() {
             val fragment = supportFragmentManager.fragments[selectedTabIndex]
             if(fragment is FragmentOne){
                 fragment.updateData()
-            }else if (fragment is FragmentTwo){
-                fragment.updateData()
-            }
 
 
         }
     }
+        }
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,

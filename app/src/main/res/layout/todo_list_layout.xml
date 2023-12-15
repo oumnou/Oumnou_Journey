@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_bg"
 
     >
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Always Feels Nice to be organized :)"
+        android:text="Always Feels Nice to be organized "
         android:textSize="30dp"
         android:layout_margin="25dp"
-        android:fontFamily="casual"
+        android:gravity="center"
         android:textStyle="italic"
         android:textColor="#673AB7"
 
