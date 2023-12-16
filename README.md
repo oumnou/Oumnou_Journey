@@ -43,8 +43,17 @@ Contributions to Oumnou_Journey are welcome! If you have any ideas for improveme
 - Happy learning and organizing your academic journey with Oumnou!
 
 ## Screens
+<div style="display: flex;">
 
-* ![Alt text](./screen/page0.jpg)
-* ![Alt text](./screen/page1.jpg)
-* ![Alt text](./screen/page2.jpg)
-* ![Alt text](./screen/page3.jpg)
+<img src = "./screen/page0.jpg" height = 320 >
+<span>  </span>
+<img src = "./screen/page1.jpg" height = 320 >
+<span>  </span>
+<img src = "./screen/page2.jpg" height = 320 >
+<span>  </span>
+
+<img src = "./screen/page3.jpg" height = 320 >
+</div>
+
+
+
