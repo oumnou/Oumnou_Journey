@@ -135,8 +135,11 @@ open class MainActivity : AppCompatActivity() {
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK && data != null) {
 
             // Update the data in the corresponding fragment
-            val fragment = supportFragmentManager.fragments[0] as FragmentOne
-            fragment.updateData()
+            if (supportFragmentManager.fragments[0] is FragmentOne) {
+                val fragment = supportFragmentManager.fragments[0] as FragmentOne
+                fragment.updateData()
+            }
+
 
 
 

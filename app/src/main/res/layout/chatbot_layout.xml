@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#EBE7F3"
+        android:background="#FEF4EE"
         android:orientation="horizontal">
 
         <EditText
@@ -41,7 +41,7 @@
             android:backgroundTint="@color/white"
 
             android:text="Send"
-            android:textColor="#673AB7" />
+            android:textColor="@color/chatResponse" />
 
     </LinearLayout>
 

@@ -18,8 +18,10 @@ class WelcomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.welcome_layout)
+
         var textureView:TextureView = findViewById(R.id.textureView)
-        var mediaPlayer = MediaPlayer.create(this, R.raw.video4)
+        var mediaPlayer = MediaPlayer.create(this, R.raw.bg_video5)
+
 
         textureView.surfaceTextureListener = object : SurfaceTextureListener {
             override fun onSurfaceTextureAvailable(surface: SurfaceTexture, width: Int, height: Int) {

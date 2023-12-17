@@ -15,7 +15,7 @@
         android:layout_margin="25dp"
         android:gravity="center"
         android:textStyle="italic"
-        android:textColor="#673AB7"
+        android:textColor="#3F51B5"
 
         />
     <TextView
@@ -51,7 +51,7 @@
             android:background="@drawable/button2"
             android:layout_width="match_parent"
             android:textColor="@color/white"
-            android:backgroundTint="#A27DD8"
+            android:backgroundTint="@color/bgTheme"
             android:layout_height="wrap_content"
             android:text="Add"
             android:fontFamily="casual"

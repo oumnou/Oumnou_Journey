@@ -12,12 +12,13 @@
 
 
 
-    <color name="bgTheme">#EFE6F6</color>
-    <color name="icon">#1E034E</color>
+    <color name="bgTheme">#F39016</color>
+    <color name="icon">#55A4BE</color>
     <color name="endColor">#F3F0F8</color>
-    <color name="startColor">#9259CC</color>
-    <color name="btnAdd">#E91E63</color>
-    <color name="chatQuestion"></color>
+    <color name="startColor">#788BF1</color>
+    <color name="btnAdd">#55A4BE</color>
+    <color name="chatResponse">#F44336</color>
+    <color name="chatQuestion">#FFC107</color>
     <color name="deleteBg">#C6B7DC</color>
 
 
